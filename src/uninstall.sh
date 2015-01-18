@@ -14,6 +14,7 @@ echo "Uninstall..."
 
 rm /usr/local/bin/timer1986
 rm /usr/share/applications/1986BE91T.desktop
+rm /usr/share/pixmaps/icon_1986.png
 
 echo "Done."
 
