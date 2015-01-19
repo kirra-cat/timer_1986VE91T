@@ -90,6 +90,15 @@ namespace Callback
 
       double current_arr = (current_timer_clk/GUI.current_prescaler) * current_result;
       GUI.timer_arr_entry.set_text(template.printf((uint32)(current_arr * GUI.current_prescaler - 1)));
+      
+      uint32 div = (uint32) int.parse(GUI.divider_entry.get_text());
+      
+      if ((uint32)(current_arr * GUI.current_prescaler - 1) > 0xFFFF)
+      {
+        div++;
+        GUI.divider_entry.set_text(div.to_string());
+        on_changed_callback();
+      }
     }
   }
     

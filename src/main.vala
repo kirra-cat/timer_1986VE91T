@@ -13,7 +13,7 @@ using GUI;
 namespace Application
 {
   public static const int VERSION = 1;
-  public static const int SUBVERSION = 0;
+  public static const int SUBVERSION = 1;
 
   public static int main (string[] args) 
   {
