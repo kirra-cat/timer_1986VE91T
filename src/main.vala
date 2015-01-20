@@ -22,7 +22,7 @@ namespace Application
       Gtk.init (ref args);
 
       var window = new LayoutWidgets.create_gui();
-      window.icon = new Gdk.Pixbuf.from_file ("icon_1986.png");
+      window.icon = new Gdk.Pixbuf.from_file ("/usr/share/pixmaps/icon_1986.png");
       window.show_all();
 
       Gtk.main();
