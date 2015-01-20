@@ -36,6 +36,9 @@ namespace GUI
     
   public Gtk.CheckButton upper_case_checkbutton;
   public Gtk.CheckButton add_0x_checkbutton;
+  public Gtk.CheckButton enable_check_borders_checkbutton;
+  
+  public Gtk.Label status_bar_label;
   
   public uint last_timer_hclk = 0;
   public uint last_result = 0;
@@ -187,6 +190,16 @@ namespace GUI
 		  add_0x_checkbutton.label = "Добавлять 0x";
 		  grid.attach(add_0x_checkbutton, 1, 7, 1, 1);
 		  add_0x_checkbutton.notify["active"].connect(Callback.on_changed_callback);
+		  
+		  enable_check_borders_checkbutton = new Gtk.CheckButton();
+		  enable_check_borders_checkbutton.active = true;
+		  enable_check_borders_checkbutton.label = "Подстраивать до 16 бит";
+		  grid.attach(enable_check_borders_checkbutton, 0, 8, 1, 1);
+		  
+		  status_bar_label = new Gtk.Label("""<span color="#009C00">Добра Вам!</span>""");
+		  status_bar_label.set_use_markup (true);
+		  status_bar_label.set_line_wrap (true);
+		  grid.attach(status_bar_label, 1, 8, 1, 1);
 		  
 		  int vesion = Application.VERSION;
 		  int subversion = Application.SUBVERSION;

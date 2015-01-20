@@ -95,9 +95,27 @@ namespace Callback
       
       if ((uint32)(current_arr * GUI.current_prescaler - 1) > 0xFFFF)
       {
-        div++;
-        GUI.divider_entry.set_text(div.to_string());
-        on_changed_callback();
+        if (GUI.enable_check_borders_checkbutton.active)
+        {
+          div++;
+          GUI.divider_entry.set_text(div.to_string());
+          on_changed_callback();
+          GUI.status_bar_label.set_text("""<span color="#D2A829">Изменено значение делителя</span>""");
+          GUI.status_bar_label.set_use_markup (true);
+		      GUI.status_bar_label.set_line_wrap (true);
+        }
+        else
+        {
+          GUI.status_bar_label.set_text("""<span color="#FF0000">ARR за пределом 0xFFFF</span>""");
+          GUI.status_bar_label.set_use_markup (true);
+		      GUI.status_bar_label.set_line_wrap (true);
+		    }
+      }
+      else
+      {
+          GUI.status_bar_label.set_text("""<span color="#009C00">Результат корректен</span>""");
+          GUI.status_bar_label.set_use_markup (true);
+		      GUI.status_bar_label.set_line_wrap (true);
       }
     }
   }
