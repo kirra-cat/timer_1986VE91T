@@ -39,6 +39,7 @@ namespace GUI
   public Gtk.CheckButton enable_check_borders_checkbutton;
   
   public Gtk.Label status_bar_label;
+  public Gtk.Button update_data_button;
   
   public uint last_timer_hclk = 0;
   public uint last_result = 0;
@@ -201,6 +202,14 @@ namespace GUI
 		  status_bar_label.set_line_wrap (true);
 		  grid.attach(status_bar_label, 1, 8, 1, 1);
 		  
+		  update_data_button = new Gtk.Button();
+		  Gtk.Image image = new Gtk.Image.from_icon_name("reload", Gtk.IconSize.BUTTON);
+		  update_data_button.set_image(image);
+		  update_data_button.set_image_position(Gtk.PositionType.LEFT);
+		  update_data_button.halign = Gtk.Align.END;
+		  update_data_button.clicked.connect(Callback.on_changed_callback);
+		  grid.attach(update_data_button, 2, 8, 1, 1);
+		  
 		  int vesion = Application.VERSION;
 		  int subversion = Application.SUBVERSION;
 		  var version_label = new Gtk.Label.with_mnemonic(@"ver. $vesion.$subversion");
@@ -212,6 +221,6 @@ namespace GUI
     }
   }
 }
-/**
+/**⇌
  * End file GUI.vala
  */
