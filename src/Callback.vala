@@ -13,7 +13,6 @@ namespace Callback
   public void on_changed_callback()
   {
     if (GUI.HCLK_entry.get_text().length == 0 |
-        GUI.divider_entry.get_text().length == 0 |
         GUI.result_entry.get_text().length == 0)
     {
       stderr.printf("\nTimer 1986 : WARNING **: : applications have empty fields.\n");
@@ -34,7 +33,7 @@ namespace Callback
       }
       stderr.printf("\nTimer 1986 : INFO **: : current prescaler = %d\n", GUI.current_prescaler);
       uint32 current_hclk = (uint32)int.parse(GUI.HCLK_entry.get_text());
-      uint32 current_divider = (uint32)int.parse(GUI.divider_entry.get_text());
+      uint32 current_divider = (uint32)GUI.divider_spin_box.adjustment.value;
       double current_result = (double)double.parse(GUI.result_entry.get_text());
 
       switch (GUI.HCLK_combobox.active)
@@ -91,16 +90,16 @@ namespace Callback
       double current_arr = (current_timer_clk/GUI.current_prescaler) * current_result;
       GUI.timer_arr_entry.set_text(template.printf((uint32)(current_arr * GUI.current_prescaler - 1)));
       
-      uint32 div = (uint32) int.parse(GUI.divider_entry.get_text());
+      uint32 div = (uint32) GUI.divider_spin_box.adjustment.value;
       
       if ((uint32)(current_arr * GUI.current_prescaler - 1) > 0xFFFF)
       {
         if (GUI.enable_check_borders_checkbutton.active)
         {
           div++;
-          GUI.divider_entry.set_text(div.to_string());
+          GUI.divider_spin_box.adjustment.value = div;
           on_changed_callback();
-          GUI.status_bar_label.set_text("""<span color="#D2A829">Изменено значение делителя</span>""");
+          GUI.status_bar_label.set_text("""<span color="#E3B822">Изменено значение делителя</span>""");
           GUI.status_bar_label.set_use_markup (true);
 		      GUI.status_bar_label.set_line_wrap (true);
         }
